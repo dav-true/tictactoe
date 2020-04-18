@@ -4,8 +4,10 @@ const play_again_btn = document.querySelector('.btn-primary')
 var player = 1;
 const innerCROSS = `<div class="cross"></div>`;
 const innerZERO = `<div class="zero"></div>`;
-const player_id = document.querySelector('.player-id');
+const modal_title = document.querySelector('.modal-title');
 const player_lable = document.querySelector('.player-lable');
+var filled_cells_counter = 0;
+var draw_stopper = 0;
 
 function rowWinnerDetection(innerHTML, player) {
     for (i = 0; i < 3; i++) {
@@ -16,7 +18,8 @@ function rowWinnerDetection(innerHTML, player) {
             }
         }
         if (counter == 3) {
-            player_id.innerText = player
+            draw_stopper++;
+            modal_title.innerText = `Player ${player} is a winner!`
             $('#exampleModalCenter').modal()
             console.log(`Row test: player ${player} is winner`)
         }
@@ -32,7 +35,8 @@ function colWinnerDetection(innerHTML, player) {
             }
         }
         if (counter == 3) {
-            player_id.innerText = player
+            draw_stopper++;
+            modal_title.innerText = `Player ${player} is a winner!`
             $('#exampleModalCenter').modal()
             console.log(`Column test : player ${player} is winner`);
         }
@@ -47,7 +51,8 @@ function leftDiagonalWinnerDetection(innerHTML, player) {
         }
     }
     if (counter == 3) {
-        player_id.innerText = player
+        draw_stopper++;
+        modal_title.innerText = `Player ${player} is a winner!`
         $('#exampleModalCenter').modal()
         console.log(`Left diagonal test: player ${player} is winner`)
     }
@@ -63,7 +68,8 @@ function rightDiagonalWinnerDetection(innerHTML, player) {
         j--;
     }
     if (counter == 3) {
-        player_id.innerText = player
+        draw_stopper++;
+        modal_title.innerText = `Player ${player} is a winner!`
         $('#exampleModalCenter').modal()
         console.log(`Right diagonal test: player ${player} is winner`)
     }
@@ -74,6 +80,7 @@ function rightDiagonalWinnerDetection(innerHTML, player) {
 $(document).ready(function () {
     
     cell.click(function () {
+        filled_cells_counter++;
         let index = $(cell).index(this);
         let cellHTML = cell[index].innerHTML.replace(/\s/g, '').length;
         if (cellHTML == 0) {
@@ -101,15 +108,19 @@ $(document).ready(function () {
         rightDiagonalWinnerDetection(innerCROSS, 1);
         rightDiagonalWinnerDetection(innerZERO, 2)
 
+        if(filled_cells_counter == 9 && draw_stopper == 0) {
+            modal_title.innerText = `It's draw!`
+            $('#exampleModalCenter').modal();
 
+        }
     })
 
 
     play_again_btn.addEventListener('click', () => {
-          player_lable.style.color = 'red';
-        
+        player_lable.style.color = 'red';
+        filled_cells_counter = 0;
         player = 1;
-        
+        draw_stopper = 0;
         player_lable.innerText = 'PLAYER 1 MOVE'
 
         for (i = 0; i < 9; i++) {
