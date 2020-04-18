@@ -1,0 +1,41 @@
+main {
+  height: 100vh; }
+  main .btn-secondary {
+    background-color: red; }
+    main .btn-secondary:hover {
+      background-color: #ca0404; }
+  main .btn-primary {
+    background-color: green; }
+    main .btn-primary:hover {
+      background-color: #026202; }
+  main .main-container {
+    height: 100%; }
+    main .main-container .main-row {
+      height: 100%; }
+      main .main-container .main-row .main-col {
+        margin: 13% 0;
+        height: auto;
+        padding: 0; }
+        main .main-container .main-row .main-col .player-lable {
+          text-align: center;
+          font-size: 24px;
+          color: red; }
+        main .main-container .main-row .main-col table {
+          margin-top: 10px;
+          width: 350px;
+          height: 350px; }
+          main .main-container .main-row .main-col table td {
+            width: 40px;
+            height: 33%;
+            border: 3px solid #284688;
+            cursor: pointer; }
+            main .main-container .main-row .main-col table td .zero {
+              height: 100%;
+              background-image: url(img/zero.png);
+              background-size: cover; }
+            main .main-container .main-row .main-col table td .cross {
+              height: 100%;
+              background-image: url(img/cross.png);
+              background-size: cover; }
+
+/*# sourceMappingURL=style.css.map */
